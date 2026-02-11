@@ -3,38 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Glowing Frame</title>
+    <link rel="stylesheet" href="styles.css">
     <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            background-color: #000;
+        /* Glow effect */
+        .glow {
+            transition: box-shadow 0.3s;
         }
-        .frame {
-            width: 300px;
-            height: 300px;
-            border: 10px solid transparent;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-            position: relative;
-            background-color: rgba(255, 255, 255, 0.1);
-            transition: transform 0.1s;
+        .glow:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 0, 1);
         }
     </style>
+    <title>Document</title>
 </head>
 <body>
-    <div class="frame" id="glowingFrame"></div>
+    <div class="frame glow" onmouseover="trackMouse(event)">
+        Hover over this frame to see the glow effect!
+    </div>
     <script>
-        const frame = document.getElementById('glowingFrame');
-        document.addEventListener('mousemove', (e) => {
-            const x = (e.clientX / window.innerWidth) * 2 - 1;
-            const y = (e.clientY / window.innerHeight) * 2 - 1;
-            frame.style.transform = `rotateY(${x * 20}deg) rotateX(${-y * 20}deg)`;
-        });
+        function trackMouse(event) {
+            const frame = document.querySelector('.frame');
+            frame.style.transform = `translate(${event.clientX}px, ${event.clientY}px)`;
+        }
     </script>
 </body>
 </html>
